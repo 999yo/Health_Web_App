@@ -1,0 +1,19 @@
+def index(request):
+    """投稿一覧ページ"""
+
+    # ログイン時のみ投稿を表示
+    if request.user.is_authenticated:
+        user = request.user
+        followees = user.followees.all()
+        posts = Post.objects.filter(
+            Q(user=user) |
+            Q(user__in=followees)
+        ).order_by('-id').distinct()
+    else:
+        posts = None
+    context = {
+        'posts': posts,
+    }
+    return render(request, 'app/index.html', context)
+
+    ＃https://selfs-ryo.com/detail/compare_django_user_models
