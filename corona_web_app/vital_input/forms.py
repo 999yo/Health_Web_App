@@ -5,7 +5,12 @@ from django import forms
 class VitalForm(forms.ModelForm):
   class Meta():
     model = Vital
-    fields = '__all__'
+    fields = (
+      'vital_date', 'BodyTemperature', 'SpO2', 'Sbp', 'Dbp',
+      'Pulse','Dyspnea', 'ChestPain', 'Fatigue', 'Chills',
+      'Cough', 'Cough', 'RunnyNose','Nausea','Vomiting',
+      'Diarrhea', 'Headache', 'Stomachace', 'JointPain', 'Dysosmia',
+      'Convulsion','LossOfAppetite','MealAmount', 'AmountOfWater', 'NumberOfAntipyretics')
     labels = {'vital_date':'日時（過去の記録ならその時間を記載してください）',
               'BodyTemperature':'体温',
               'SpO2':'酸素飽和度(SpO2)',
@@ -27,7 +32,7 @@ class VitalForm(forms.ModelForm):
               'Dysosmia': "嗅覚異常",
               'Dysgeusia':"味覚異常",
               'Convulsion': "けいれん",
-              'Appetite':"食欲",
+              'LossOfAppetite':"食欲",
               'MealAmount':"食事量",
               'AmountOfWater':"水分量",
               'NumberOfAntipyretics':"解熱剤の残数"

@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from accounts.models import *
 
+
 class  AccountRegistration(TemplateView):
     def __init__(self):
         self.params = {
@@ -66,13 +67,15 @@ class MedicalHistoryRegstraion(TemplateView):
             print(self.params["registration_form"].errors)
         return render(request,'accounts_HTML/medical_history_create.html',context=self.params)
 
-#####ログイン、新規登録、ログイン後ページ######
+
+
+######ログイン、新規登録、ログイン後ページ######
 #ログイン
 def Login(request):
     # POST
     if request.method == 'POST':
         # フォーム入力のユーザーID・パスワード取得
-        ID = request.POST.get('username')
+        ID = request.POST.get('userid')
         Pass = request.POST.get('password')
 
         # Djangoの認証機能

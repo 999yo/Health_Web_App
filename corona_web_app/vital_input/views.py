@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from . import forms
+from accounts.models import User
 
 class VitalFormView(TemplateView):
-  def __init__(self):
+  def __init__(self, user, *args, **kwargs):
+    self.login_user = User.user
+    super().__init__(*args, **kwargs)
     self.params = {"Message": "以下の健康状態を入力してください",
-                  "form": forms.VitalForm}
-                  
+                    "form": forms.VitalForm}
+  
   def get(self, request):
     return render(request, "vital_input_HTML/vital_input.html", context = self.params)
 

@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from .models import MedicalHistory, User
 
 class RegistrationForm(forms.ModelForm):
@@ -26,7 +27,6 @@ class UserInformationForm(forms.ModelForm):
     #widgets={'user':forms.HiddenInput()}
 
     labels = {
-    'username':'ユーザーネーム',
     'last_name': '苗字',
     'first_name': '名前',
     'last_name_kana': '苗字のふりがな',
