@@ -1,3 +1,4 @@
+from xml.etree.ElementInclude import include
 from django.urls import path
 from . import views
 
@@ -6,4 +7,5 @@ urlpatterns = [
     path('registration', views.AccountRegistration.as_view(), name='registration'),
     path("home",views.home,name="home"), #ログイン後home
     path("logout",views.Logout,name="Logout"),
+
 ]

@@ -1,30 +1,29 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="ja" dir="ltr">
 
-<head>
-<meta charset="utf-8">
-<title></title>
-</head>
+  <head>
+  {% load static %}
+  {% load django_bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>新規登録</title>
+  </head>
 
-<body>
-  <h1>新規登録</h1>
-  <div class="reg">
-  <table class="reg_form">
+  <body class="text-center">
+    <main class="form-signin w-50 m-auto">
+      <h1 class="h3 mb-3 fw-normal">新規登録</h1>
+      <form enctype="multipart/form-data" method="post"">
+        <div class="form-floating"></div>
+        {{ registration_form.as_table }}
+        {% csrf_token %}
+        <input class="w-50 btn btn-lg btn-primary" type="submit" name="" value="登録">
 
-    <form enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    {{ registration_form.as_table }}
-    {{ user_information_form.as_table }}
-    {{ user_medical_historly_form.as_table }}
-    <tr><td></td><td>
-    <input class="btn" type="submit" name="" value="登録">
-    </td></tr>
-    </form>
-
-    </table>
-    </div>
-
-
-</body>
+      </form>
+    </main>
+  </body>
 </html>
+
+<!--     {{ user_information_form.as_table }}
+    {{ user_medical_historly_form.as_table }}-->

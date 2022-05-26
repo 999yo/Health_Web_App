@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 {% load django_bootstrap5 %}
 {% load static %}
+
 <html lang="ja" dir="ltr">
 <head>
   {% bootstrap_css %}
   {% bootstrap_javascript %}
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta charset="utf-8">
 <title>ホーム</title>
 <link rel="stylesheet" href='{% static "accounts_CSS/login_index.css" %}'/>
@@ -12,15 +14,22 @@
 <div class="container text-center">
 <div class="row align-items-center">
 <body>
-    <h1><font color="red">{{ UserID }}</font>さん,ようこそ
-    <p><a href = {% url 'vital_input' %}>健康状態を入力する</a></p>
-    <p><a href =  {% url 'vital_log' %}>健康状態の経過を見る</a></p>
-    <p> ログアウトは<a href="{% url 'Logout' %}">こちら</a></p>
-    
+  <div class="d-grid gap-2 col-6 mx-auto">
+  <div class="py-3">
+    <h1><font color="blue">{{ UserID }}</font> さん, ようこそ
+  </div>
+  <div class="py-3">
+    <button type="button" class="btn btn-outline-primary" href = {% url 'vital_input' %}>健康状態を入力する</button>
+  </div>
+  <div class="py-3">
+    <button type="button" class="btn btn-outline-primary" href = {% url 'vital_input' %}>今までの健康状態を見る</button>
+  </div>
+  <div class="py-3">
+  <button type="button" class="btn btn-outline-danger" href={% url 'Logout' %}>ログアウト </button></div>
+
+  </div>
 </div>
 </div>
 </body>
-  
-  
   
 </html>
