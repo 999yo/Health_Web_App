@@ -1,49 +1,26 @@
 <!DOCTYPE html>
-{% load django_bootstrap5 %}
-<html>
- 
-<head>
+<html>    
+    <head>
+    {% load django_bootstrap5 %}
+    {% load static %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <meta charset="utf-8" />
-    <title>過去の健康記録</title>
+    <title>経過表</title>
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
-</head>
+    </head>
 
 <body>
     <div class="container text-center">
         <h1>あなたの健康記録</h1>
-    <p>{{ message }}</p>
-    <table border="3">
+    <p>{{ username }} さんの健康記録</p>
+    <table class="table table-striped table-bordered">
+    <th>日付</th>
+   <tr><th>体温</th></tr> 
     {% for vital in data %}
-    <div class="container table-responsive">
-    <th>日付</th><td>{{ vital.vital_date }}</td>
-    <tr><th>体温</th><td>{{ vital.BodyTemperature }}</td></tr> 
-    <tr><th>酸素飽和度</th><td>{{ vital.SpO2 }}</td></tr>
-    <tr><th>収縮期血圧</th><td>{{ vital.Sbp }}</td></tr>
-    <tr><th>拡張期血圧</th><td>{{ vital.Dbp }}</td></tr>
-    <tr><th>脈拍</th><td>{{ vital.Pulse }}</td></tr>
-    <tr><th>息苦しさ</th><td>{{ vital.Dyspnea }}</td></tr>
-    <tr><th>胸の痛み</th><td>{{ vital.ChestPain }}</td></tr>
-    <tr><th>倦怠感</th><td>{{ vital.Fatigue }}</td></tr>
-    <tr><th>悪寒</th><td>{{ vital.Chills }}</td></tr>
-    <tr><th>咳</th><td>{{ vital.Cough }}</td></tr>
-    <tr><th>鼻水</th><td>{{ vital.RunnyNose }}</td></tr>
-    <tr><th>嘔気</th><td>{{ vital.Nausea }}</td></tr>
-    <tr><th>嘔吐</th><td>{{ vital.Vomiting }}</td></tr>
-    <tr><th>下痢</th><td>{{ vital.Diarrhea }}</td></tr>
-    <tr><th>頭痛</th><td>{{ vital.Headache }}</td></tr>
-    <tr><th>腹痛</th><td>{{ vital.Stomachace }}</td></tr>
-    <tr><th>関節痛</th><td>{{ vital.JointPain }}</td></tr>
-    <tr><th>嗅覚異常</th><td>{{ vital.Dysosmia }}</td></tr>
-    <tr><th>味覚異常</th><td>{{ vital.Dysgeusia }}</td></tr>
-    <tr><th>けいれん</th><td>{{ vital.Convulsion }}</td></tr>
-    <tr><th>食欲</th><td>{{ vital.LossOfAppetite }}</td></tr>
-    <tr><th>食事量</th><td>{{ vital.MealAmount }}</td></tr>
-    <tr><th>水分量</th><td>{{ vital.AmountOfWater }}</td></tr>
-    <tr><th>解熱剤の残数</th><td>{{ vital.NumberOfAntipyretics }}</td></tr>
+    <th><td>{{ vital.vital_date }} </td></th>
+    <td>{{ vital.BodyTemperature }}</td>
     {% endfor %}
     </div>
     </table>
@@ -51,3 +28,6 @@
 </body>
 </div>
 </html>
+
+<th>日付</th>               <td> {{ vital.vital_date }} </td>
+<tr><th>体温</th>      <td>{{ vital.BodyTemperature }}</td></tr>

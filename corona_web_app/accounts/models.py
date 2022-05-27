@@ -1,3 +1,4 @@
+from tabnanny import verbose
 from django.db import models
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
@@ -33,7 +34,7 @@ class UserManager(BaseUserManager):
  
         
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(_("email_address"), unique=True)
+    email = models.EmailField(_("email_address"), unique=True,null=True)
     is_staff = models.BooleanField(_("staff status"), default=False)
     is_active = models.BooleanField(_("active"), default=True)
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
@@ -53,6 +54,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     building = models.CharField(verbose_name='建物名・部屋番号',max_length=50)
     emargency_contact_number = models.IntegerField(verbose_name='緊急連絡先(番号)',null=True)
     emargency_person = models.CharField(verbose_name='緊急連絡先（名前）',max_length=50,null=True)
+    
+    def __str__(self):
+        return str.email
 
     objects = UserManager()
     USERNAME_FIELD = "email"
@@ -113,3 +117,15 @@ class MedicalHistory(models.Model):
         db_table = 'User_medical_history'
         verbose_name = _('既往歴')
         verbose_name_plural = _('既往歴')
+
+class CoronaHistory(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='user_corona_history')
+    #発症日
+    date_of_symptom_onset = models.DateField(verbose_name= '発症日', null=True )
+    #検査陽性日
+    date_of_positive = models.DateField(verbose_name= '検査陽性日', null=True )
+    
+    class Meta:
+        db_table = 'user_corona_history'
+        verbose_name = _('発症日と陽性日')
+

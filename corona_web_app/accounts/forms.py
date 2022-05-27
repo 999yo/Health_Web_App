@@ -1,7 +1,9 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import MedicalHistory, User
+from .models import MedicalHistory, User,CoronaHistory
+from django.contrib.admin.widgets import AdminDateWidget
+from django.contrib.auth import get_user_model
 
 class RegistrationForm(forms.ModelForm):
     email = forms.EmailField(widget=forms.TextInput(
@@ -65,3 +67,12 @@ class MedicalHistoryForm(forms.ModelForm):
     'day_smoking': '喫煙本数/日',
     'year_smoking': '喫煙年数',
     }
+
+class CoronaHistoryForm(forms.ModelForm):
+    class Meta:
+        model = CoronaHistory
+        fields = '__all__'
+        widgets = {
+            'date_of_symptom_onset': AdminDateWidget(),
+            'date_of_positive' : AdminDateWidget(),
+        }

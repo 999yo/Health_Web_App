@@ -1,5 +1,0 @@
-id,vital_date,BodyTemperature,SpO2,Sbp,Dbp,Pulse,Dyspnea,ChestPain,Fatigue,Chills,Cough,RunnyNose,Nausea,Vomiting,Diarrhea,Headache,Stomachace,JointPain,Dysosmia,Dysgeusia,Convulsion,LossOfAppetite,MealAmount,AmountOfWater,NumberOfAntipyretics
-1,2022-04-30 21:00:00,36.0,100,90,60,70,無,無,無,無,無,無,無,無,無,無,無,無,無,無,無,有,0,0,2
-2,2022-04-30 21:00:00,37.2,99,90,40,60,無,無,少し,無,少し,有,無,無,有,少し,無,少し,無,無,無,少し,1,0,1
-3,2022-05-01 21:00:00,38.0,98,100,60,80,少し,無,無,無,無,無,無,無,無,無,無,無,無,無,無,有,0,0,1
-3,2022-05-01 21:00:00,38.0,98,100,60,80,少し,無,無,無,無,無,無,無,無,無,無,無,無,無,無,有,0,0,1
