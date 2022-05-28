@@ -8,11 +8,13 @@ class UserInformationList(ListView):
 
 class UserInformationJsonView(BaseDatatableView):
   model = User
-  columns = ['id','last_name', 'first_name', 'last_name_kana', 'first_name_kana', 'birthday', 'sex', 'height', 'weight', 'phone_number', 'prefecture', 'emargency_contact_number', 'emargency_person']
+  columns = ['id','last_name', 'first_name', 'last_name_kana', 'first_name_kana',
+  'birthday', 'sex', 'height', 'weight', 'phone_number', 
+  'prefecture', 'emargency_contact_number', 'emargency_person']
   
   def render_column(self, row, column):
       if column == 'id':
-          return f'<a href="/data_tables_view/data_search/{row.id}">{row.id}</a>'
+          return f'<a href="/data_tables_view/data_datail/{row.id}">{row.id}</a>'
       else:
           return super(UserInformationJsonView, self).render_column(row, column)
 
@@ -21,4 +23,4 @@ class UserInformationJsonView(BaseDatatableView):
 
 class UserInformationDetail(DetailView):
   model = User
-  template_name = 'data_tables_view_HTML/data_tables_views.html'
+  template_name = 'data_tables_view_HTML/data_tables_detail_.html'

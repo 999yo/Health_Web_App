@@ -1,23 +1,19 @@
-from django.views import generic
 from django.views.generic import DetailView, ListView
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from vital_input.models import Vital
-import plotly.offline as offline
+from django.urls import reverse_lazy
 
 class VitalList(ListView):
     model = Vital
     template_name = 'vital_log_HTML/vital_log.html'
 
 class VitalJsonView(BaseDatatableView):
-    # モデルの指定
     model = Vital
-    # 表示するフィールドの指定
+    success_url = reverse_lazy('vital_log')
+    
     columns = ['vital_date', 'BodyTemperature', 'SpO2', 'Sbp', 'Dbp', 
-    'Pulse', 'Dyspnea', 'ChestPain', 'Fatigue', 'Chills',
-    'Cough', 'RunnyNose','Nausea', 'Vomiting', 'Diarrhea', 
+    'Pulse', 'Dyspnea', 'ChestPain', 'Fatigue', 'Chills','Cough', 'RunnyNose','Nausea', 'Vomiting', 'Diarrhea', 
     'Headache','Stomachace','JointPain','Dysosmia', 'Dysgeusia', 'Convulsion', 'LossOfAppetite', 'MealAmount', 'AmountOfWater', 'NumberOfAntipyretics']
-
-
     def render_column(self, row, column):
         if column == 'id':
             return f'<a href="/vital_log_HTML/vital_detail/{row.id}">{row.id}</a>'
@@ -93,10 +89,7 @@ def vital_graph():
       tickfont=dict(color="#72B7B2"),
       anchor="free", overlaying="y",
       side="left", position=1),
-    
-    #
     yaxis3=dict(
-       domain=[0, 0.5],
       title="Sbp",
       titlefont=dict(color="#fbb4ae"),
       tickfont=dict(color="#fbb4ae"),
@@ -120,7 +113,7 @@ def vital_graph():
   return fig.to_html(include_plotlyjs=False)
 
 class VitalGraphView(TemplateView):
-  template_name = "vital_plot.html"
+  template_name = "vital_log_HTML/vital_log.html"
 
   def get_context_data(self, **kwargs):
     context = super(VitalGraphView, self).get_context_data(**kwargs)
