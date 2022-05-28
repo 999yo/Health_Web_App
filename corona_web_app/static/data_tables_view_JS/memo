@@ -1,0 +1,58 @@
+$(document).ready(function() {
+  var oTable = $('.data').dataTable({
+      // ...
+      "processing": true,
+      "serverSide": true,
+      "ajax": "{% url 'data_search' %}" // 上で作成したエンドポイント
+  });
+  // ...
+});
+
+columnDefs: [
+  {targets: 0, data: 'id'},
+  {targets: 1, data: 'last_name'},
+  {targets: 2, data: 'first_name'},
+  {targets: 3, data: 'last_name_kana'},
+  {targets: 4, data: 'first_name_kana'},
+  {targets: 5, data: 'birthday'},
+  {targets: 6, data: 'sex'},
+  {targets: 7, data: 'height'},
+  {targets: 8, data: 'weight'},
+  {targets: 9, data: 'phone_number'},
+  {targets: 10, data: 'prefecture'},
+  {targets: 11, data: 'emargency_contact_number'},
+  {targets: 12, data: 'emargency_person'},
+]
+
+
+
+$('#table').DataTable({
+  autoWidth: false,
+  serverSide: true,
+  processing: true,
+  responsive: true,
+  pageLength: 25,  // サンプルデータ量が多いため、デフォルト値を変えておく
+  ajax: {
+    "processing": true,
+    "dataSrc": "",
+    "url": "{% url 'data_search' %}"
+  },
+  columnDefs: [
+    
+    {targets: 0, data: 'id'},
+    {targets: 1, data: 'last_name'},
+    {targets: 2, data: 'first_name'},
+    {targets: 3, data: 'last_name_kana'},
+    {targets: 4, data: 'first_name_kana'},
+    {targets: 5, data: 'birthday'},
+    {targets: 6, data: 'sex'},
+    {targets: 7, data: 'height'},
+    {targets: 8, data: 'weight'},
+    {targets: 9, data: 'phone_number'},
+    {targets: 10, data: 'prefecture'},
+    {targets: 11, data: 'emargency_contact_number'},
+    {targets: 12, data: 'emargency_person'},
+
+  ],
+  order: [ ],
+});

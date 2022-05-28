@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+{% load django_bootstrap5 %}
+<html>
+ 
+<head>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <meta charset="utf-8" />
+    <title>過去の健康記録</title>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+    <py-env>
+        -plotly
+        -pandas
+        - numpy
+        - matplotlib
+    </py-env>
+</head>
+
+<body>
+<py-script>
+import plotly
+import pandas
+import numpy
+import matplotlib
+from plotly.offline import plot
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
+import sqlite3
+conn = sqlite3.connect('corona_app_project.sqlite3')
+df = pandas.read_sql_query('SELECT * FROM vital_input_vital',conn)
+fig = go.Figure()
+fig.add_trace(go.Scatter(x=df["vital_date"], 
+            y=df["BodyTemperature"],
+            mode='markers+lines+text',
+            textposition='top right',
+            texttemplate='%{y:}℃',
+            textfont=dict(size=10),
+            name="体温", line=dict(color="#FFA15A")))
+fig.add_trace(go.Scatter(x=df["vital_date"], 
+            y=df["SpO2"],
+            mode='markers+lines+text',
+            textposition='bottom left',
+            texttemplate='%{y:}%',
+            textfont=dict(size=10),
+            name="SpO2",
+            line=dict(color="#72B7B2"),
+            yaxis="y2"))
+fig.add_trace(go.Scatter(x=df["vital_date"], 
+            mode='markers+lines+text',
+            textposition='top center',
+            texttemplate='%{y:}mmHg',
+            textfont=dict(size=10),
+            y=df["Sbp"], name="収縮期血圧",
+            line=dict(color="#fbb4ae"), 
+            yaxis="y3"))
+fig.add_trace(go.Scatter(x=df["vital_date"], 
+            mode='markers+lines+text',
+            textposition='bottom center',
+            texttemplate='%{y:}mmHg',
+            textfont=dict(size=10),
+            y=df["Dbp"], 
+            name="拡張期血圧",
+            line=dict(color="#b3cde3"),yaxis="y4"))
+
+
+# Create axis objects
+fig.update_layout(
+xaxis=dict(
+    domain=[0, 1]
+),
+yaxis=dict(
+    title="", titlefont=dict(color="#FFA15A"),
+    tickfont=dict(color="#FFA15A")),
+
+yaxis2=dict(
+    title="SpO2",
+    titlefont=dict(color="#72B7B2"),
+    tickfont=dict(color="#72B7B2"),
+    anchor="free", overlaying="y",
+    side="left", position=1),
+
+yaxis3=dict(
+    title="Sbp",
+    titlefont=dict(color="#fbb4ae"),
+    tickfont=dict(color="#fbb4ae"),
+    anchor="x", overlaying="y", side="left",position=0.3),
+
+yaxis4=dict(
+    title="Dbp",
+    titlefont=dict(color="#b3cde3"),
+    tickfont=dict(color="#b3cde3"),
+    anchor="free", overlaying="y",
+    side="right", position=1)
+)
+
+# Update layout properties
+fig.update_layout(
+title_text="検温表",
+width=800,
+)
+
+
+pyscript.write('plot',fig)
+
+conn.close()
+</py-script> 
+
+
+
+
+    <div class="container text-center">
+        <h1>あなたの健康記録</h1>
+    <p>{{ message }}</p>
+    <table border="3">
+    {% for vital in data %}
+    <div class="container table-responsive">
+    <th>日付</th><td>{{ vital.vital_date }}</td>
+    <tr><th>体温</th><td>{{ vital.BodyTemperature }}</td></tr> 
+    <tr><th>酸素飽和度</th><td>{{ vital.SpO2 }}</td></tr>
+    <tr><th>収縮期血圧</th><td>{{ vital.Sbp }}</td></tr>
+    <tr><th>拡張期血圧</th><td>{{ vital.Dbp }}</td></tr>
+    <tr><th>脈拍</th><td>{{ vital.Pulse }}</td></tr>
+    <tr><th>息苦しさ</th><td>{{ vital.Dyspnea }}</td></tr>
+    <tr><th>胸の痛み</th><td>{{ vital.ChestPain }}</td></tr>
+    <tr><th>倦怠感</th><td>{{ vital.Fatigue }}</td></tr>
+    <tr><th>悪寒</th><td>{{ vital.Chills }}</td></tr>
+    <tr><th>咳</th><td>{{ vital.Cough }}</td></tr>
+    <tr><th>鼻水</th><td>{{ vital.RunnyNose }}</td></tr>
+    <tr><th>嘔気</th><td>{{ vital.Nausea }}</td></tr>
+    <tr><th>嘔吐</th><td>{{ vital.Vomiting }}</td></tr>
+    <tr><th>下痢</th><td>{{ vital.Diarrhea }}</td></tr>
+    <tr><th>頭痛</th><td>{{ vital.Headache }}</td></tr>
+    <tr><th>腹痛</th><td>{{ vital.Stomachace }}</td></tr>
+    <tr><th>関節痛</th><td>{{ vital.JointPain }}</td></tr>
+    <tr><th>嗅覚異常</th><td>{{ vital.Dysosmia }}</td></tr>
+    <tr><th>味覚異常</th><td>{{ vital.Dysgeusia }}</td></tr>
+    <tr><th>けいれん</th><td>{{ vital.Convulsion }}</td></tr>
+    <tr><th>食欲</th><td>{{ vital.LossOfAppetite }}</td></tr>
+    <tr><th>食事量</th><td>{{ vital.MealAmount }}</td></tr>
+    <tr><th>水分量</th><td>{{ vital.AmountOfWater }}</td></tr>
+    <tr><th>解熱剤の残数</th><td>{{ vital.NumberOfAntipyretics }}</td></tr>
+    {% endfor %}
+    </div>
+    </table>
+
+</body>
+</div>
+</html>

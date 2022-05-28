@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+
+  <head>
+  {% load static %}
+  {% load django_bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>患者情報検索</title>
+  </head>
+<div class = "container">
+  <body class="text-center">
+    <table id = "table" class = "table table-striped table-bordered dataTable" style="width:100%" >
+      <thead>
+        <tr>
+         <th>ID</th>
+         <th>苗字</th>
+         <th>名前</th>
+         <th>苗字（かな）</th>
+         <th>名前（かな）</th>
+         <th>生年月日</th>
+         <th>性別</th>
+         <th>身長</th>
+         <th>体重</th>
+         <th>電話番号</th>
+         <th>住所（都道府県）</th>
+         <th>緊急連絡先（電話番号）</th>
+         <th>緊急連作先</th>
+      </tr>
+    </thead> 
+    </table>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+  <script src="{% static 'data_tables_view_JS/data_tables_view.js' %}"></script>
+  
+
+
+
+
+
+
+  </body>
+</html>

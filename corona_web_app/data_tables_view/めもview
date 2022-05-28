@@ -1,0 +1,22 @@
+from django.views import generic
+from django.views.generic import ListView
+from django_datatables_view.base_datatable_view import BaseDatatableView
+from accounts.models import User
+
+class UserInformationDataTableView(BaseDatatableView):
+  model = User
+  template_name = 'data_tables_view_HTML/data_tables_views.html'
+
+  columns = ['id','last_name', 'first_name', 'last_name_kana', 'first_name_kana', 'birthday', 'sex', 'height', 'weight', 'phone_number', 'prefecture', 'emargency_contact_number', 'emargency_person'
+   ]
+  # 検索方法の指定：部分一致  #検索方法。デフォルトは「FILTER_ISTARTSWITH（前方一致）」。「FILTER_ICONTAINS（部分一致）」に変更可。
+
+  def get_initial_queryset(self):
+     return self.model.objects.all()
+
+  def filter_queryset(self, qs):
+    qs = super().filter_queryset(qs)
+    return qs
+
+
+

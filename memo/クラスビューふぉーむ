@@ -1,0 +1,12 @@
+class VitalFormView(TemplateView,CreateView):
+  template_name = "vital_input_HTML/vital_input.html"  
+  model = Vital
+  form_class = VitalForm
+  success_url = reverse_lazy('vital_input')
+
+  def form_valid(self,form):
+    #ユーザーを投稿者として保存できるようにする
+    object = form.save(commit = False)
+    object.create_user = self.request.user
+    form.save()
+    return HttpResponse('formvalid')

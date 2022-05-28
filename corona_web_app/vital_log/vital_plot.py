@@ -1,19 +1,12 @@
 #from vital_input.models import Vital
-import pandas as pd
+import pandas
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 import sqlite3
-import pandas as pd 
 from plotly.offline import plot
 
-
 conn = sqlite3.connect('corona_app_project.sqlite3')
-df = pd.read_sql_query('SELECT * FROM vital_input',conn)
-#cur.execute('SELECT * FROM vital_input')
-#データベースとの連携
-#with sqlite3.connect('corona_app_project.sqlite3') as engine:
-    #df = pd.read_sql('SELECT * FROM vital_input',engine)
-
+df = pandas.read_sql_query('SELECT * FROM vital_input',conn)
 fig = go.Figure()
 fig.add_trace(go.Scatter(x=df["vital_date"], 
             y=df["BodyTemperature"],
@@ -85,7 +78,8 @@ fig.update_layout(
   width=800,
 )
 
-
 fig.show()
-fig.write_html("template/vitalgraph.html")
+#fig.write_html("vital_log_HTML/vital_log.html")
+plot_fig = plot(fig, output_type = 'div', include_plotlyjs= Flase)
+print(plot_fig)
 conn.close()

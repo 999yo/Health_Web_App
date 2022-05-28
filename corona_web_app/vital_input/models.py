@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 
 class Vital(models.Model):
-  user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='user_vital')
+  vital_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='user_vital',null=True)
   vital_date = models.DateTimeField(default=timezone.now)
   BodyTemperature = models.FloatField(validators=[MinValueValidator(30.0), MaxValueValidator(50.0)])
   SpO2 = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
@@ -40,6 +40,8 @@ class Vital(models.Model):
   AmountOfWater = models.TextField(verbose_name = "水分量", choices= AMOUNT_OF_WATER_CHOICE,blank=True)
   NumberOfAntipyretics = models.TextField(verbose_name = "解熱剤の残数", choices= ANTIPYRETICS_CHOICE,blank=True)
 
+  def __str__(self):
+        return self.vital_user
 
 
 
