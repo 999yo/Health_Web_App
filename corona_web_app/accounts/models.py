@@ -34,7 +34,7 @@ class UserManager(BaseUserManager):
  
         
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(_("email_address"), unique=True,null=True)
+    email = models.EmailField(_("email_address"), unique=True)
     is_staff = models.BooleanField(_("staff status"), default=False)
     is_active = models.BooleanField(_("active"), default=True)
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
@@ -54,15 +54,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     building = models.CharField(verbose_name='建物名・部屋番号',max_length=50)
     emargency_contact_number = models.IntegerField(verbose_name='緊急連絡先(番号)',null=True)
     emargency_person = models.CharField(verbose_name='緊急連絡先（名前）',max_length=50,null=True)
-    
-    def __str__(self):
-        return str.email
 
     objects = UserManager()
     USERNAME_FIELD = "email"
     EMAIL_FIELD = "email"
     #REQUIRED_FIELDS = ['username']
 
+    def __str__(self):
+        return self.last_name
+        
     class Meta:
         db_table = 'User'
         verbose_name = _('user')
@@ -113,10 +113,12 @@ class MedicalHistory(models.Model):
                                                                         ('40','40年以上'),
                                                                         ('50','50年以上')), max_length=50)
 
+    def __str__(self):
+        return self.heart_disease
+
     class Meta:
         db_table = 'User_medical_history'
         verbose_name = _('既往歴')
-        verbose_name_plural = _('既往歴')
 
 class CoronaHistory(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='user_corona_history')

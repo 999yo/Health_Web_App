@@ -40,6 +40,9 @@ class Vital(models.Model):
   AmountOfWater = models.TextField(verbose_name = "水分量", choices= AMOUNT_OF_WATER_CHOICE,blank=True)
   NumberOfAntipyretics = models.TextField(verbose_name = "解熱剤の残数", choices= ANTIPYRETICS_CHOICE,blank=True)
 
+  def __str__(self):
+        return self.vital_user
+
 
 
 

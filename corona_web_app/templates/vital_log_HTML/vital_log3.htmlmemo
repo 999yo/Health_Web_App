@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>datatebles site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <!--  datatables css -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="col-xs-12">
+        <table id="table1" class="table table-bordered">
+            <thead>
+            <tr>
+              <th scope="col">日付</th>
+              <th scope="col">体温</th>
+              <th scope="col">酸素飽和度</th>
+              <th scope="col">収縮期血圧</th>
+              <th scope="col">拡張期血圧</th>
+              <th scope="col">脈拍</th>
+              <th scope="col">息苦しさ</th>
+              <th scope="col">胸の痛み</th>
+              <th scope="col">倦怠感</th>
+              <th scope="col">悪寒</th>
+              <th scope="col">咳</th>
+              <th scope="col">鼻水</th>
+              <th scope="col">嘔気</th>
+              <th scope="col">嘔吐</th>
+              <th scope="col">下痢</th>
+              <th scope="col">頭痛</th>
+              <th scope="col">腹痛</th>
+              <th scope="col">関節痛</th>
+              <th scope="col">嗅覚異常</th>                    
+              <th scope="col">味覚異常</th>
+              <th scope="col">けいれん</th>
+              <th scope="col">食欲</th>
+              <th scope="col">食事量</th>
+              <th scope="col">水分量</th>
+              <th scope="col">解熱剤の残数</th>
+            </tr>
+            </thead>
+            <tbody>
+              {% for vital in data %}
+            <tr>
+              <td> {{ vital.vital_date }}</td>
+              <td> {{ vital.BodyTemperature }}</td>
+              <td> {{ vital.SpO2 }} </td>
+              <td>{{ vital.Dbp }}</td>
+              <td>{{ vital.Pulse }}</td>
+              <td>{{ vital.Dyspnea }}</td>
+              <td>{{ vital.ChestPain }}</td>
+              <td>{{ vital.Fatigue }}</td>
+              <td>{{ vital.Chills }}</td>
+              <td>{{ vital.Cough }}</td>
+              <td>{{ vital.RunnyNose }}</td>
+              <td>{{ vital.Nausea }}</td>
+              <td>{{ vital.Vomiting }}</td>
+              <td>{{ vital.Diarrhea }}</td>
+              <td>{{ vital.Headache }}</td>
+              <td>{{ vital.Stomachace }}</td>
+              <td>{{ vital.JointPain }}</td>
+              <td>{{ vital.Dysosmia }}</td>
+              <td>{{ vital.Dysgeusia }}</td>
+              <td>{{ vital.Convulsion }}</td>
+              <td>{{ vital.LossOfAppetite }}</td>
+              <td>{{ vital.MealAmount }}</td>
+              <td>{{ vital.AmountOfWater }}</td>
+              <td>{{ vital.NumberOfAntipyretics }}</td>
+              {% endfor %}
+            </tr>
+          </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+<!--  datatables js -->
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $(function(){
+        // datatableの設定を変更
+        $("#table1").DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Japanese.json"
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<html>
+<head>
+    <title>経過表</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">    
+    <!-- 3rd party CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- DataTables CSS -->
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"/> 
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+  <main class="col main pt-5 mt-3 h-100 overflow-auto">
+    <!-- Jquery -->
+    <script src="https//code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Bootstrap & Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script> 
+</body>
+</html>
+
+{% load static %}
+
+<div class= "row">
+  <div class="col-sm">
+    <p>{{ username }} さんの健康記録</p>
+    <table id="table" class="table table-bordered table-hover" style="width: 100%">
+      <thead>
+        <tr>
+                  <var>
+                    <th scope="col">日付</th>
+                    <th scope="col">体温</th>
+                    <th scope="col">酸素飽和度</th>
+                    <th scope="col">収縮期血圧</th>
+                    <th scope="col">拡張期血圧</th>
+                    <th scope="col">脈拍</th>
+                    <th scope="col">息苦しさ</th>
+                    <th scope="col">胸の痛み</th>
+                    <th scope="col">倦怠感</th>
+                    <th scope="col">悪寒</th>
+                    <th scope="col">咳</th>
+                    <th scope="col">鼻水</th>
+                    <th scope="col">嘔気</th>
+                    <th scope="col">嘔吐</th>
+                    <th scope="col">下痢</th>
+                    <th scope="col">頭痛</th>
+                    <th scope="col">腹痛</th>
+                    <th scope="col">関節痛</th>
+                    <th scope="col">嗅覚異常</th>                    
+                    <th scope="col">味覚異常</th>
+                    <th scope="col">けいれん</th>
+                    <th scope="col">食欲</th>
+                    <th scope="col">食事量</th>
+                    <th scope="col">水分量</th>
+                    <th scope="col">解熱剤の残数</th>
+                </tr>
+              </var>
+            </thead>
+            <tbody >
+              {% for vital in data %}
+                <tr>
+                    <td> {{ vital.vital_date }}</td>
+                    <td> {{ vital.BodyTemperature }}</td>
+                    <td> {{ vital.SpO2 }} </td>
+                    <td>{{ vital.Dbp }}</td>
+                    <td>{{ vital.Pulse }}</td>
+                    <td>{{ vital.Dyspnea }}</td>
+                    <td>{{ vital.ChestPain }}</td>
+                    <td>{{ vital.Fatigue }}</td>
+                    <td>{{ vital.Chills }}</td>
+                    <td>{{ vital.Cough }}</td>
+                    <td>{{ vital.RunnyNose }}</td>
+                    <td>{{ vital.Nausea }}</td>
+                    <td>{{ vital.Vomiting }}</td>
+                    <td>{{ vital.Diarrhea }}</td>
+                    <td>{{ vital.Headache }}</td>
+                    <td>{{ vital.Stomachace }}</td>
+                    <td>{{ vital.JointPain }}</td>
+                    <td>{{ vital.Dysosmia }}</td>
+                    <td>{{ vital.Dysgeusia }}</td>
+                    <td>{{ vital.Convulsion }}</td>
+                    <td>{{ vital.LossOfAppetite }}</td>
+                    <td>{{ vital.MealAmount }}</td>
+                    <td>{{ vital.AmountOfWater }}</td>
+                    <td>{{ vital.NumberOfAntipyretics }}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</main>
+
+
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+ 
+<script>
+    $(document).ready(function () {
+    $('#table').DataTable( {
+        "paging": true,
+        "searching": true,
+        "autoWidth": false,
+        "ordering": true,
+        "columnDefs": [
+            {"width": "50px", "targets": 0},
+            {"width": "250px", "targets": 1},
+        ],
+    }
+    );
+} );
+</script>
+ 
+<!-- Added this script to see if the page would recognize the items within block -->
+<script>
+window.onload = function() {
+    if (window.jQuery) { 
+        // jQuery is loaded 
+        alert("Yeah!");
+    } else {
+        // jQuery is not loaded
+        alert("Doesn't Work");
+    }
+}
+ </script>
