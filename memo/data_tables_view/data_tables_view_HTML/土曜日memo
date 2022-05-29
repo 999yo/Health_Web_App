@@ -6,6 +6,7 @@
 {% block h1 %}患者一覧表{% endblock %}
 {% block lead %}患者が検索できます{% endblock %}
 {% block content %}
+<div class="d-grid gap-2 col-6 mx-auto"> 
 <div class="container mb-3">
     <table id="datatable" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline">
         <thead>
@@ -26,6 +27,7 @@
             </tr>
         </thead>
     </table>
+</div>
 </div>
 {% endblock %}
 {% block extra_js %}

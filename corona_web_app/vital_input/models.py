@@ -41,7 +41,7 @@ class Vital(models.Model):
   NumberOfAntipyretics = models.TextField(verbose_name = "解熱剤の残数", choices= ANTIPYRETICS_CHOICE,blank=True)
 
   def __str__(self):
-        return self.vital_user
+    return self.vital_date
 
 
 

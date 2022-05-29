@@ -1,16 +1,28 @@
-{% extends "base.html" %}
-{% block page_title %}経過表{% endblock %}
-{% block extra_css %}
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>バイタルログ</title>
 
-{% endblock %}
-{% block h1 %}経過表{% endblock %}
-{% block lead %}今までの健康状態{% endblock %}
-{% block content %}
-<div class="container mb-3">
-    <table id="datatable" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <!--  datatables css -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand " href="/">経過表</a>
+            </div>
+        </nav>
+    </header>
+</head>
+<body>
+        
+    <div class="container" style="padding-top: 10px" >
+        <div class="col-xs-12">
+            <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>日付</th>
@@ -41,22 +53,32 @@
             </tr>
         </thead>
     </table>
+    </div>
 </div>
-{% endblock %}
-{% block extra_js %}
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+<!--  datatables js -->
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 
 
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
-
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script>
 $(document).ready(function() {
     var oTable = $('#datatable').dataTable({
         "processing": true,
         "serverSide": true,
-        "ajax": "{% url 'vital_log:vital_list_ajax' %}" // 上で作成したエンドポイント
+        "lengthChange": true,
+        "searching": true,
+    "ordering": true,
+  "info": true,
+  scrollY: '60vh',
+        scrollCollapse: true,
+        paging: true,
+        "ajax": "vital_list_ajax"
     });
-    // ...
 });
 </script>
-{% endblock %}

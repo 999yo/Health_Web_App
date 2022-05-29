@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja" dir="ltr">
+  <head>    
+
+    <script src="https://kit.fontawesome.com/7cdaa6eac6.js" crossorigin="anonymous"></script>
+  {% load django_bootstrap5 %}
+  {% load static %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>コロナ観察アプリ ログイン</title>
+  <link rel="stylesheet" href='{% static "accounts_CSS/login_index.css" %}'/>
+</head>
+
+<body class="text-center">
+  <main class="form-signin w-50 m-auto">
+    <h1 class="h3 mb-3 fw-normal">コロナ観察アプリ</h1>
+    
+    <form method="post" action="{% url 'Login' %}">
+      {% csrf_token %}
+      
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInput" placeholder="" name ="userid">
+        <label for="floatingInput">メールアドレス</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="パスワード" name="password">
+        <label for="floatingPassword">パスワード</label>
+      </div>
+
+      <div class="form-check mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> 状態を記憶する
+        </label>
+      </div>
+      <button class="w-50 btn btn-lg btn-primary" type="submit">ログイン</button>
+      <p class="message">アカウントをお持ちですか？：
+      <a href="{% url 'user_base_information' %}">アカウントを作成</a>
+      
+
+   </form>
+    </main>
+
+
+</body>
+
+</html>
