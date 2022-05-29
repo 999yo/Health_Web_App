@@ -1,7 +1,7 @@
 from operator import imod
 from django.views import generic
 from django_datatables_view.base_datatable_view import BaseDatatableView
-from excel_response import ExcelMixin
+#from excel_response import ExcelMixin
 from accounts.models import User
 from django.http import JsonResponse
 from django.core import serializers
@@ -37,15 +37,15 @@ class BaseReportView(generic.ListView):
 class PrintView(BaseReportView):
     template_name = 'user_data_table/print.html'
 
-class ExcelView(ExcelMixin, BaseReportView):
+#class ExcelView(ExcelMixin, BaseReportView):
   
     # 見出し行を日本語にする
-    def get_queryset(self):
-        header = [['id', '苗字', '名前', '苗字（かな）', '名前（かな）', '生年月日', '性別', '身長',
-        '体重', '電話番号', '県' , '緊急連絡先番号', '緊急連絡先']]
-        body = [list(entry.values()) for entry in super().get_queryset().values()]
-        return header + body
+    #def get_queryset(self):
+        #header = [['id', '苗字', '名前', '苗字（かな）', '名前（かな）', '生年月日', '性別', '身長',
+        #'体重', '電話番号', '県' , '緊急連絡先番号', '緊急連絡先']]
+        #body = [list(entry.values()) for entry in super().get_queryset().values()]
+        #return header + body
 
 
-class CsvView(ExcelView):
+#class CsvView(ExcelView):
     force_csv = True

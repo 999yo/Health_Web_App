@@ -10,7 +10,13 @@
 
     <!--  datatables css -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
-
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand " href="/">経過表</a>
+            </div>
+        </nav>
+    </header>
 </head>
 <body>
         
@@ -65,11 +71,13 @@ $(document).ready(function() {
     var oTable = $('#datatable').dataTable({
         "processing": true,
         "serverSide": true,
-        "paging": true,
         "lengthChange": true,
         "searching": true,
     "ordering": true,
   "info": true,
+  scrollY: '60vh',
+        scrollCollapse: true,
+        paging: true,
         "ajax": "vital_list_ajax"
     });
 });

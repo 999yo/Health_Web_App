@@ -3,12 +3,28 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>患者検索</title>
+    <title>User検索</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
     <!--  datatables css -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
+    
+    <div class="pos-f-t">
+        <div class="collapse" id="navbarToggleExternalContent">
+          <div class="bg-dark p-4">
+            <h5 class="text-white h4">患者検索</h5>
+            <span class="text-muted">仮メニュー</span>
+          </div>
+        </div>
+        <nav class="navbar navbar-dark bg-dark">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </nav>
+      </div>
+        </nav>
+    </header>
 
 </head>
 <body>
@@ -55,8 +71,8 @@ $(document).ready(function() {
         "paging": true,
         "lengthChange": true,
         "searching": true,
-    "ordering": true,
-  "info": true,
+        "ordering": true,
+        "info": true,
         "ajax": "json"
     });
 });

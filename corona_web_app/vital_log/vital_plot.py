@@ -7,7 +7,7 @@ from django.views.generic import TemplateView
 
 def vital_graph():
   
-  conn = sqlite3.connect('corona_app_project.sqlite3')
+  conn = sqlite3.connect('db.sqlite3')
   df = pandas.read_sql_query('SELECT * FROM vital_input_vital',conn)
   fig = go.Figure()
   fig.add_trace(go.Scatter(x=df["vital_date"], 
@@ -77,7 +77,7 @@ def vital_graph():
   # Update layout properties
   fig.update_layout(
     title_text="検温表",
-    width=800,
+    width=100,
   )
 
   conn.close()

@@ -1,5 +1,4 @@
 from accounts.models import User
-
 from django.views.generic import ListView
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from accounts.models import User
@@ -17,7 +16,6 @@ class UserJsonView(BaseDatatableView):
       'birthday', 'sex', 'height', 'weight', 'phone_number', 
       'prefecture', 'emargency_contact_number', 'emargency_person']
 
-    # 検索方法の指定：部分一致
     def get_filter_method(self):
         return super().FILTER_ICONTAINS
 

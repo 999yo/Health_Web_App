@@ -33,8 +33,7 @@ import plotly.graph_objects as go
 import sqlite3
 from django.views.generic import TemplateView
 
-def vital_graph():
-  
+def vital_graph():  
   conn = sqlite3.connect('db.sqlite3')
   df = pandas.read_sql_query('SELECT * FROM vital_input_vital',conn)
   fig = go.Figure()
@@ -71,7 +70,6 @@ def vital_graph():
               name="拡張期血圧",
               line=dict(color="#b3cde3"),yaxis="y4"))
 
-
   # Create axis objects
   fig.update_layout(
     xaxis=dict(
@@ -80,8 +78,7 @@ def vital_graph():
     #体温
     yaxis=dict( domain=[0, 1],
       title="", titlefont=dict(color="#FFA15A"),
-      tickfont=dict(color="#FFA15A")),
-    
+      tickfont=dict(color="#FFA15A")),    
     #酸素飽和度
     yaxis2=dict(
       title="SpO2",
@@ -89,12 +86,13 @@ def vital_graph():
       tickfont=dict(color="#72B7B2"),
       anchor="free", overlaying="y",
       side="left", position=1),
+    #収縮期血圧
     yaxis3=dict(
       title="Sbp",
       titlefont=dict(color="#fbb4ae"),
       tickfont=dict(color="#fbb4ae"),
       anchor="x", overlaying="y", side="left",position=0.3),
-
+    #拡張期血圧
     yaxis4=dict(
       title="Dbp",
       titlefont=dict(color="#b3cde3"),
@@ -103,17 +101,11 @@ def vital_graph():
       side="right", position=1)
   )
 
-  # Update layout properties
-  fig.update_layout(
-    title_text="検温表",
-    
-  )
-
   conn.close()
   return fig.to_html(include_plotlyjs=False)
 
 class VitalGraphView(TemplateView):
-  template_name = "vital_log_HTML/vital_log.html"
+  template_name = "vital_log_HTML/vital_plot.html"
 
   def get_context_data(self, **kwargs):
     context = super(VitalGraphView, self).get_context_data(**kwargs)

@@ -162,7 +162,7 @@ class MedicalHistory(models.Model):
                                                                         ('50','50年以上')), max_length=50)
 
     def __str__(self):
-        return self.heart_disease
+        return self.user
 
     class Meta:
         db_table = 'User_medical_history'
