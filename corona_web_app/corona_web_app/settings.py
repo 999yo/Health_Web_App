@@ -31,7 +31,8 @@ INSTALLED_APPS = [
     'accounts',
     'vital_input',
     'vital_log',
-    'data_tables_view',
+    'user_data_table',
+    'user_json',
 ]
 
 MIDDLEWARE = [

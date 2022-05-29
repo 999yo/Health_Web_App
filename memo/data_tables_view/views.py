@@ -1,6 +1,7 @@
-from accounts.models import User
 from django.views.generic import DetailView, ListView
 from django_datatables_view.base_datatable_view import BaseDatatableView
+from accounts.models from User
+
 
 class UserInformationList(ListView):
   model = User

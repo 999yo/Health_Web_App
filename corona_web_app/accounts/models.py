@@ -6,7 +6,18 @@ from django.core.mail import send_mail
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
+from django.forms.models import model_to_dict
 
+import json
+from django.db import models as django_models
+from django.db.models.query import QuerySet
+class MyJsonEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, django_models.Model) and hasattr(obj, 'to_dict'):
+            return obj.to_dict()
+        if isinstance(obj, QuerySet):
+            return list(obj)
+        json.JSONEncoder.default(self, obj)
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -62,6 +73,43 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.last_name
+
+    def to_dict(self):
+        return model_to_dict(self)
+    
+    def dict(self):
+        return {
+            'self.email',
+            'self.last_name',
+            'self.first_name',
+            'self.last_name_kana',
+            'self.first_name_kana',
+            'self.birthday',
+            'self.sex',
+            'self.height',
+            'self.weight',
+            'self.phone_number',
+            'self.prefecture',
+            'self.emargency_contact_number',
+            'self.emargency_person',
+        }
+
+    def get_data(self):
+        return {
+                "email": 'self.email',
+                "last_name": 'self.last_name',
+                "first_name": 'self.first_name',
+                "last_name_kana": 'self.last_name_kana',
+                "first_name_kana": 'self.first_name_kana',
+                "birthday": 'self.birthday',
+                "sex": 'self.sex',
+                "height": 'self.height',
+                "weight": 'self.weight',
+                "phone_number": 'self.phone_number',
+                "prefecture": 'self.prefecture',
+                "emargency_contact_number": 'self.emargency_contact_number',
+                "emargency_person": 'self.emargency_person',
+                }
         
     class Meta:
         db_table = 'User'
