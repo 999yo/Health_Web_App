@@ -1,21 +1,51 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head></label></p>
         <meta charset="urf-8">
         <meta name="viewport"
    content="width=320,
-      height=480,
-      initial-scale=1.0,
-      minimum-scale=1.0,
-      maximum-scale=2.0,
-      user-scalable=yes" />
+            height=480,
+            initial-scale=1.0,
+            minimum-scale=1.0,
+            maximum-scale=2.0,
+            user-scalable=yes" />
         <title>体調入力</title>
     </head>
+
     <body>
-        {% csrf_token %}
+
+        <h1>体調を入力</h1>
+
+        <form class="" action="/health_care" method="post" enctype="multipart/form-data">
+        {% csrf_token %}        
+        <p><label><input type="checkbox" name="symptom" value="1">★顔色が明らかに悪い</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">★唇が紫色になっている</label></p></p>
+        <p><label><input type="checkbox" name="symptom" value="1">★いつもと違う、様子がおかしい</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">咳や痰がひどくなっている</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">★息が荒くなった（呼吸回数が多くなった）</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">★急に息苦しくなった</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">★日常生活の中で少し動くと息があがる</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">★胸の痛みがある</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">★横になれない、座らないと息ができない</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">★肩で息をしている・ゼーゼーしている</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">起きているのが辛い（全身倦怠感）</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">吐き気がある</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">嘔吐がある</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">下痢が続いている（1日3回以上）</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">★ぼんやりしている（反応が弱い）</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">★もうろうとしている（返事がない）</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">脈が飛ぶ、脈のリズムが乱れる感じがする</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">のどの痛みがある</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">鼻水・鼻づまりがある</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">頭が痛い</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">関節や筋肉の痛みがある</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">味を感じない</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">匂いを感じない</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">食事が食べられない</label></p>
+        <p><label><input type="checkbox" name="symptom" value="1">半日で一度も尿が出ていない</label></p>
         
-        {% for field in form %}
-        {% endfor %}
+        <button type="submit" class="btn btn-primary">送信する</button>
+
 
     </body>
 </html>

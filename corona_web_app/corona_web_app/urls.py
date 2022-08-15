@@ -9,5 +9,6 @@ urlpatterns = [
     path('',include('vital_input.urls')),
     path('',include('vital_log.urls')),
     path('', include('user_json.urls')),
+    path('',include('health_care.urls')),
     
 ]
