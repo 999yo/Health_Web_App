@@ -12,6 +12,8 @@
         <title>体調入力</title>
     </head>
     <body>
+        {% csrf_token %}
+        
         {% for field in form %}
         {% endfor %}
 
