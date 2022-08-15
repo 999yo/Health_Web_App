@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'vital_log',
     'user_data_table',
     'user_json',
+    'health_care'
 ]
 
 MIDDLEWARE = [
